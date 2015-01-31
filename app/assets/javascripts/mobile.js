@@ -7,10 +7,11 @@ $(document).ready(function($) {
   diagram_name = $('#diagram_name').html();
   node_content = $('#node-content').html();
 
-  instrucciones =  diagram_name + ', Presiona una vez, para escuchar el contenido,' ;
-  instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
-  instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento, ';
-  instrucciones += 'El Contenido del nodo es , '+ node_content;
+  instrucciones =  diagram_name;
+  //'+ , Presiona una vez, para escuchar el contenido,' ;
+  // instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
+  // instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento, ';
+  // instrucciones += 'El Contenido del nodo es , '+ node_content;
 
   meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});
 

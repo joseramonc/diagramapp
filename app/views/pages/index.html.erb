@@ -1,4 +1,5 @@
 <div class="row">
+  <h1>Buscar Diagramas</h1>
   <%= form_tag pages_path, method: :get, class: "navbar-form navbar-left search-form" do %>
 
     <%= text_field_tag(
@@ -12,6 +13,7 @@
   <% end %>
 </div>
 
+<h3>Lista de diagramas</h3>
 <ul>
   <% @diagrams.each do |diagram| %>
     <li>
