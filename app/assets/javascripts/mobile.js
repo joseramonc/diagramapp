@@ -58,11 +58,12 @@ $(document).ready(function($) {
         shapeClass = "";
         if(data.position == 'initial' || data.position == 'final')
           shapeClass = 'oval';
-        else if(data.type == 'Condition')
+        else if(data['type'] == 'Condition')
           shapeClass = 'rombo';
         else
           shapeClass = 'rectangle';
         console.log(shapeClass);
+        console.log(data.type);
         console.log(data);
         text = $(element.find('h4')[0]);
         text.html(data.text);

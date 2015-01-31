@@ -22,7 +22,7 @@ class NodesController < AdminController
     end
     response = @node.children
 
-    render json: JSON.parse(response.to_json).merge(type: @node.type)
+    render json: JSON.parse(response.to_json).merge(type: response.type)
   end
 
   # GET /nodes/:id/next?condition
