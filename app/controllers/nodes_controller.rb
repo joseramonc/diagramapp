@@ -16,7 +16,7 @@ class NodesController < AdminController
     @node = Node.find(params[:id])
     if params[:condition] == '1'
       response = @node.true_child
-    elsif params[:conditionition] == '0'
+    elsif params[:condition] == '0'
       response = @node.false_child
     end
     response = @node.children

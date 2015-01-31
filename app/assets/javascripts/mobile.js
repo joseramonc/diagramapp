@@ -47,12 +47,25 @@ $(document).ready(function($) {
         data: { },
       })
       .done(function(data) {
-        //Actualizar data attributes
-        element = $('#flow-element');
+        //Actualizar data attributes DONE
+        element   = $('#flow-element');
+        flow_shape = $('#flow-shape');
+
         element.data('id',   data.id);
         element.data('type', data.type);
-        console.log(data);
+        //console.log(data);
         //Y renderizar el dibujo
+        shapeClass = "";
+        if(data.position == 'initial' || data.position == 'final')
+          shapeClass = 'oval';
+        else if(data.type == 'Condition')
+          shapeClass = 'rombo';
+        else
+          shapeClass = 'rectangle';
+        console.log(data);
+        text = $(element.find('h4')[0]);
+        text.html(data.text);
+        flow_shape.attr('class', shapeClass);
       });
       
       meSpeak.speak('Me gustan las chicas grandes');
