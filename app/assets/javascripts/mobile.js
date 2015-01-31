@@ -7,12 +7,12 @@ $(document).ready(function($) {
   diagram_name = $('#diagram_name').html();
   node_content = $('#node-content').html();
 
-  /*instrucciones =  diagram_name + ', Presiona una vez, para escuchar el contenido,' ;
+  instrucciones =  diagram_name + ', Presiona una vez, para escuchar el contenido,' ;
   instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
   instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento, ';
   instrucciones += 'El Contenido del nodo es , '+ node_content;
 
-  meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});*/
+  meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});
 
   var myElement = document.getElementById('flow-element');
   var hammertime = new Hammer(myElement);
@@ -20,16 +20,19 @@ $(document).ready(function($) {
   /*
   * Dice la información del nodo
   */
-  /*hammertime.on('tap', function(ev) {
-      meSpeak.speak('Me gustan las chicas grandes');
-  });*/
+  hammertime.on('tap', function(ev) {
+    console.log(ev.tapCount);
+    node_content = $('#node-content').html();
+    contenido = 'El Contenido del nodo es , '+ node_content;
+    meSpeak.speak(contenido);
+  });
 
   /*
   * Dice la información de ayuda del profesor
   */
   var mc = new Hammer.Manager(myElement, {});
-  mc.add( new Hammer.Tap({ event: 'doubletap', taps: 3, interval: 100 }) );
-  hammertime.on('doubletap', function(ev) {
+  mc.add( new Hammer.Tap({ event: 'doubletap', taps: 1, interval: 10000 }) );
+  hammertime.on('pinch', function(ev) {
       nodeHelp = $('#node-help').html();
       meSpeak.speak('Información Adicional, '+ nodeHelp);
   });
