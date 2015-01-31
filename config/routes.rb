@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/app' do
+    get 'pages/diagram/:id', as: :app_diagram, controller: 'pages', action: 'diagram'
+  end
+
   scope '/audio' do
     resources :nodes do
       member do
@@ -15,12 +19,12 @@ Rails.application.routes.draw do
         get :next
         put :condition
       end
-    end    
+    end
   end
 
   devise_for :users
 
-  root "pages#index"
+  root "pages#index", as: 'pages'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

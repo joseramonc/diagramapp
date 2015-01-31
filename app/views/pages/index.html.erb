@@ -1,39 +1,22 @@
 <div class="row">
-  <div class="col-lg-12">
-    <div class="tree" id="flow-element">
-      <ul>
-        <li>
-          <a href="#">Parent</a>
+  <%= form_tag pages_path, method: :get, class: "navbar-form navbar-left search-form" do %>
 
-          <ul>
-            <li>
-              <a href="#">Child</a>
-              <ul>
-                <li>
-                  <a href="#">Grand Child</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Child</a>
-              <ul>
-                <li><a href="#">Grand Child</a></li>
-                <li>
-                  <a href="#">Grand Child</a>
-                  <ul>
-                    <li>
-                      <a href="#">Great Grand Child</a>
-                    </li>
-                    <li>
-                      <a href="#">Great Grand Child</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
+    <%= text_field_tag(
+        :search,
+        params[:search],
+        placeholder: "Search",
+        class: "form-control"
+    ) %>
+
+    <%= button_tag 'hola', class: 'btn btn-primary' %>
+  <% end %>
 </div>
+
+<ul>
+  <% @diagrams.each do |diagram| %>
+    <li>
+      <%= link_to diagram.name, app_diagram_path(diagram), class: "btn btn-primary" %>
+      <%= diagram.name %>
+    </li>
+  <% end %>
+</ul>
