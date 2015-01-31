@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @node.text %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @node.position %>
+</p>
+
+<p>
+  <strong>Diagram:</strong>
+  <%= @node.diagram_id %>
+</p>
+
+<p>
+  <strong>Help text:</strong>
+  <%= @node.help_text %>
+</p>
+
+<p>
+  <strong>Parent:</strong>
+  <%= @node.parent_id %>
+</p>
+<p>
+  <strong>type:</strong>
+  <%= @node.type %>
+</p>
+<p>
+  <% if @node.condition? %>
+    <strong>Escoger true y false child</strong>
+    <%= form_for @node, url: condition_node_path(@node), method: :put do |f| %>
+      <%= f.select(
+        :true_child_id,
+        options_from_collection_for_select(
+          @nodes_of_diagram,
+          :id,
+          :text,
+          @node.true_child_id
+        ),
+        class: "form-control"
+      ) %>
+      <%= f.select(
+        :false_child_id,
+        options_from_collection_for_select(
+          @nodes_of_diagram,
+          :id,
+          :text,
+          @node.false_child_id
+        ),
+        class: "form-control"
+      ) %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_node_path(@node) %> |
+<%= link_to 'Back', nodes_path %>

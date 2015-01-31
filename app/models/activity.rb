@@ -1,0 +1,2 @@
+class Activity < Node
+end

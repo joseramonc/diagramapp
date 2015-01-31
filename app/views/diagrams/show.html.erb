@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @diagram.name %>
+</p>
+
+<ul>
+  <% node = @diagram.first_node %>
+  <% right_childs = [] %>
+  <% while !node.nil? do %>
+    <%= node.render %>
+    <% node = node.children %>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_diagram_path(@diagram) %> |
+<%= link_to 'Back', diagrams_path %>
