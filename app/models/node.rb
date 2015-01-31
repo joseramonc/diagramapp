@@ -20,9 +20,9 @@ class Node < ActiveRecord::Base
 
   belongs_to :diagram
 
-  has_one :children,
-          class_name:  'Node',
-          foreign_key: 'parent_id'
+  # has_one :children,
+  #         class_name:  'Node',
+  #         foreign_key: 'parent_id'
 
   belongs_to  :parent,
               class_name: 'Node',
@@ -30,6 +30,13 @@ class Node < ActiveRecord::Base
 
   before_destroy :update_childs
 
+  def children
+    Node.find_by_parent_id(self.id)
+  end
+
+  def info
+    "#{text}:#{id}:chi-#{children.id if children}:par-#{parent_id}"
+  end
 
   def condition?
     type == 'Condition'
