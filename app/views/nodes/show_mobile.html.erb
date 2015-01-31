@@ -4,6 +4,9 @@
       <h3 id="diagram_name"><%= @node.diagram.name %></h3>
       <div id="flow-shape" class="<%= shape_class @node %>">
         <h4 id="node-content" class="text-center"><%= @node.text %></h4>
+        <h6 id="node-help">
+          <%= @node.help_text %>
+        </h6>
       </div>
     </div>
   </div>

@@ -27,8 +27,11 @@ $(document).ready(function($) {
   /*
   * Dice la información de ayuda del profesor
   */
+  var mc = new Hammer.Manager(myElement, {});
+  mc.add( new Hammer.Tap({ event: 'doubletap', taps: 3, interval: 100 }) );
   hammertime.on('doubletap', function(ev) {
-      meSpeak.speak('Me gustan las chicas grandes');
+      nodeHelp = $('#node-help').html();
+      meSpeak.speak('Información Adicional, '+ nodeHelp);
   });
 
   /*
