@@ -3,8 +3,9 @@ class Diagram < ActiveRecord::Base
 
   has_many :nodes, -> {order('position ASC')}
 
+  # Insensible :shipit: :(
   scope :search, -> (q) do
-    where('name LIKE %?%', q)
+    where('LOWER(name) LIKE LOWER(?)', "%#{q}%")
   end
 
   def conditions
