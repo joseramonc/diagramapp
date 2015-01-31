@@ -1,12 +1,32 @@
+function speak (text) {
+  $('#speech').remove();
+  var dom_element = ('<audio id="speech" src="http://translate.google.com/translate_tts?tl=es&q=' + text + '"controls="controls" autoplay="autoplay">Your browser does not support the audio element.</audio>');
+  $('body').prepend(dom_element);
+}
+
 $(document).ready(function($) {
-  
+
   /* Cargando meSpeak */
-  meSpeak.loadConfig("mespeak/mespeak_config.json");
-  meSpeak.loadVoice('mespeak/voices/es.json');
-  instrucciones =  'Diagrama N, Presiona una vez, para escuchar contenido,' ;
-  instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
-  instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento';
-  meSpeak.speak(instrucciones);
+  var text = '';
+  text = 'Desliza de, derecha a izquierda, para ir al siguiente elemento';
+  var dom_element = ('<audio id="speech" src="http://translate.google.com/translate_tts?tl=es&q=' + text + '"controls="controls" autoplay="autoplay">Your browser does not support the audio element.</audio>');
+  $('body').prepend(dom_element);
+
+  $("#speech").bind('ended', function(){
+
+      $(this).remove();
+      text = 'Presiona rápidamente dos veces, para escuchar las notas';
+      var dom_element = ('<audio id="speech" src="http://translate.google.com/translate_tts?tl=es&q=' + text + '"controls="controls" autoplay="autoplay">Your browser does not support the audio element.</audio>');
+      $('body').prepend(dom_element);
+
+      $("#speech").bind('ended', function(){
+
+          $(this).remove();
+          text = 'Presiona una vez, para escuchar contenido,';
+          var dom_element = ('<audio id="speech" src="http://translate.google.com/translate_tts?tl=es&q=' + text + '"controls="controls" autoplay="autoplay">Your browser does not support the audio element.</audio>');
+          $('body').prepend(dom_element);
+      });
+  });
 
   var myElement = document.getElementById('flow-element');
   var hammertime = new Hammer(myElement);
@@ -22,7 +42,7 @@ $(document).ready(function($) {
   * Dice la información de ayuda del profesor
   */
   hammertime.on('doubletap', function(ev) {
-      meSpeak.speak('Me gustan las chicas grandes');
+    speak('Aprende algo dinero');
   });
 
   /*
@@ -36,7 +56,7 @@ $(document).ready(function($) {
       // url = "node/:id/next?=0"
       // node/4
       id = element.data('id');
-      url = "/nodes/" + id +"/next";
+      url = "/nodes/" + id + "/next";
       if(element.data('type') === 'Content'){
         url += "?condition=1"
       }
@@ -67,8 +87,8 @@ $(document).ready(function($) {
         text.html(data.text);
         flow_shape.attr('class', shapeClass);
       });
-      
-      meSpeak.speak('Me gustan las chicas grandes');
+
+      speak('Me gustan las chicas grandes tap');
   });
 
   /*
@@ -86,8 +106,8 @@ $(document).ready(function($) {
       .done(function() {
         console.log("success");
       });
-      
-      meSpeak.speak('Me gustan las chicas grandes');
+
+      speak('Me gustan las chicas grandes');
   });
 
 });
