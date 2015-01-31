@@ -1,6 +1,7 @@
 class NodesController < AdminController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
   before_action :current_class_symbol, only: [:update]
+  before_action :set_form, only: [:new, :create, :edit, :update]
 
   before_action :authenticate_user!, except: [:next]
 
@@ -50,7 +51,7 @@ class NodesController < AdminController
   def create
     @node = Node.new(node_params)
     @node.save
-    redirect_to(nodes_path)
+    redirect_to node_path(@node)
   end
 
   def update
@@ -89,5 +90,9 @@ class NodesController < AdminController
       elsif params.has_key?('loop')
         params['node'] = params.delete('loop')
       end
+    end
+
+    def set_form
+      @diagrams = Diagram.all
     end
 end

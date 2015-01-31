@@ -24,24 +24,16 @@
     <%= f.text_field :text %>
   </div>
   <div class="field">
-    <%= f.label :position %><br>
-    <%= f.select :position, [['Inicial', :initial], ['Normal', :middle], ['Final', :final]] %>
-  </div>
-  <div class="field">
     <%= f.label :diagram_id %><br>
-    <%= f.number_field :diagram_id %>
+    <%= f.select :diagram_id, options_from_collection_for_select(@diagrams, :id, :name, @node.diagram_id) %>
   </div>
   <div class="field">
     <%= f.label :help_text %><br>
     <%= f.text_field :help_text %>
   </div>
   <div class="field">
-    <%= f.label :parent_id %><br>
-    <%= f.number_field :parent_id %>
-  </div>
-  <div class="field">
     <%= f.label :type %><br>
-    <%= f.select :type, ['Activity', 'Condition', 'Loop'] %>
+    <%= f.select :type, ['Activity', 'Condition'] %>
   </div>
 
   <% if @node.condition? %>

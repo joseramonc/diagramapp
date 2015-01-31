@@ -6,4 +6,8 @@ class Diagram < ActiveRecord::Base
   def first_node
     nodes.where(position: 0).first
   end
+
+  def last_node
+    nodes.where(position: 2).first
+  end
 end
