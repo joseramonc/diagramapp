@@ -8,6 +8,16 @@ Rails.application.routes.draw do
     end
   end
 
+  scope '/audio' do
+    resources :nodes do
+      member do
+        get :show_mobile
+        get :next
+        put :condition
+      end
+    end    
+  end
+
   devise_for :users
 
   root "pages#index"

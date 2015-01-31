@@ -1,5 +1,5 @@
 class NodesController < AdminController
-  before_action :set_node, only: [:show, :edit, :update, :destroy]
+  before_action :set_node, only: [:show, :show_mobile,:edit, :update, :destroy]
   before_action :current_class_symbol, only: [:update]
   before_action :set_form, only: [:new, :create, :edit, :update]
 
@@ -32,6 +32,9 @@ class NodesController < AdminController
   def show
     @nodes_of_diagram = Node.where(diagram: @node.diagram)
     respond_with(@node)
+  end
+
+  def show_mobile
   end
 
   def new
