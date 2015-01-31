@@ -29,9 +29,9 @@
   <%= @node.type %>
 </p>
 <p>
-  <% if @node.condition? %>
-    <strong>Escoger true y false child</strong>
-    <%= form_for @node, url: condition_node_path(@node), method: :put do |f| %>
+  <h3>Configurar nodo</h3>
+  <%= form_for @node, url: node_path(@node), method: :put do |f| %>
+    <% if @node.condition? %>
       <%= f.select(
         :true_child_id,
         options_from_collection_for_select(
@@ -52,9 +52,30 @@
         ),
         class: "form-control"
       ) %>
-      <%= f.submit "Update", class: "btn btn-primary" %>
-
+    <% else %>
+      <div class="field">
+        <%= f.label :position %><br>
+        <% options = [] %>
+        <% options << ['Inicial', :initial] if @node.diagram.first_node.nil? %>
+        <% options << ['Normal', :middle] %>
+        <% options << ['Final', :final] if @node.diagram.last_node.nil? %>
+        <%= f.select :position, options %>
+      </div>
+      <div class="field">
+        <%= f.label :parent_id %><br>
+        <%= f.select(
+          :parent_id,
+          options_from_collection_for_select(
+            @nodes_of_diagram,
+            :id,
+            :text,
+            @node.parent_id
+          )
+        ) %>
+      </div>
     <% end %>
+
+    <%= f.submit "Update", class: "btn btn-primary" %>
   <% end %>
 </p>
 

@@ -13,5 +13,3 @@ defaults: &defaults
 development:
   <<: *defaults
   database: diagramapp_development
-  username: postgres
-  password: password
