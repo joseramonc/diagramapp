@@ -1,5 +1,5 @@
 class NodesController < AdminController
-  before_action :set_node, only: [:show, :edit, :update, :destroy]
+  before_action :set_node, only: [:show, :show_mobile,:edit, :update, :destroy]
   before_action :current_class_symbol, only: [:update]
 
   before_action :authenticate_user!, except: [:next]
@@ -16,7 +16,7 @@ class NodesController < AdminController
     @node = Node.find(params[:id])
     if params[:condition] == '1'
       response = @node.true_child
-    elsif params[:condition] == '0'
+    elsif params[:conditionition] == '0'
       response = @node.false_child
     end
     response = @node.children
@@ -30,6 +30,9 @@ class NodesController < AdminController
   def show
     @nodes_of_diagram = Node.where(diagram: @node.diagram)
     respond_with(@node)
+  end
+
+  def show_mobile
   end
 
   def new
