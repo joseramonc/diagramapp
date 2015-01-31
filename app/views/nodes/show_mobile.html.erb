@@ -1,11 +1,10 @@
 <div class="row">
   <div class="col-lg-12">
     <div class="tree" id="flow-element" data-id="<%= @node.id %>" data-type="<%= @node.type %>">
-      <h3><%= @node.diagram.name %></h3>
+      <h3 id="diagram_name"><%= @node.diagram.name %></h3>
       <div id="flow-shape" class="<%= shape_class @node %>">
-        <h4 class="text-center"><%= @node.text %></h4>
+        <h4 id="node-content" class="text-center"><%= @node.text %></h4>
       </div>
-
     </div>
   </div>
 </div>

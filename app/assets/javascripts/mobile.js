@@ -1,12 +1,18 @@
 $(document).ready(function($) {
   
   /* Cargando meSpeak */
-  meSpeak.loadConfig("mespeak/mespeak_config.json");
-  meSpeak.loadVoice('mespeak/voices/es.json');
-  instrucciones =  'Diagrama N, Presiona una vez, para escuchar contenido,' ;
+  meSpeak.loadConfig("/mespeak/mespeak_config.json");
+  meSpeak.loadVoice('/mespeak/voices/es-la.json');
+
+  diagram_name = $('#diagram_name').html();
+  node_content = $('#node-content').html();
+
+  /*instrucciones =  diagram_name + ', Presiona una vez, para escuchar el contenido,' ;
   instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
-  instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento';
-  meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});
+  instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento, ';
+  instrucciones += 'El Contenido del nodo es , '+ node_content;
+
+  meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});*/
 
   var myElement = document.getElementById('flow-element');
   var hammertime = new Hammer(myElement);
@@ -50,27 +56,41 @@ $(document).ready(function($) {
         //Actualizar data attributes DONE
         element   = $('#flow-element');
         flow_shape = $('#flow-shape');
+        node_content = $('#node-content').html(data.text);
 
         element.data('id',   data.id);
         element.data('type', data.type);
+        console.log(data);
         //console.log(data);
         //Y renderizar el dibujo
         shapeClass = "";
-        if(data.position == 'initial' || data.position == 'final')
+        tipoNodo   = "";
+        if(data.position == 'initial' || data.position == 'final'){
+          if (data.position == 'initial') {
+            tipoNodo = "Inicio";
+          }else{
+            tipoNodo = "Final";
+          }
           shapeClass = 'oval';
-        else if(data['type'] == 'Condition')
+        }
+        else if(data.type == 'Condition'){
+          tipoNodo   = "Condición";
           shapeClass = 'rombo';
-        else
+          }
+        else{
+          tipoNodo   = "Actividad";
           shapeClass = 'rectangle';
-        console.log(shapeClass);
-        console.log(data.type);
-        console.log(data);
+        }
+
         text = $(element.find('h4')[0]);
         text.html(data.text);
         flow_shape.attr('class', shapeClass);
+
+        node_content = $('#node-content').html();      
+        instrucciones = 'Tipo de nodo , '+ tipoNodo;
+        instrucciones += ', Contenido , '+ node_content;
+        meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});
       });
-      
-      meSpeak.speak('Me gustan las chicas grandes');
   });
 
   /*
