@@ -15,12 +15,15 @@ class NodesController < AdminController
   # GET /nodes/:id/next?condition=(true|false)
   def next
     @node = Node.find(params[:id])
-    if params[:condition] == '1'
-      response = @node.true_child
-    elsif params[:condition] == '0'
-      response = @node.false_child
+    if params[:condition].present?
+      if params[:condition] == '1'
+        response = @node.true_child
+      elsif params[:condition] == '0'
+        response = @node.false_child
+      end
+    else
+      response = @node.children
     end
-    response = @node.children
 
     render json: JSON.parse(response.to_json).merge(type: response.type)
   end
