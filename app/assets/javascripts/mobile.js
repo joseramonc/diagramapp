@@ -28,7 +28,7 @@ $(document).ready(function($) {
   /*
   * Mostrar el siguiente o ir a true
   */
-  hammertime.on('tap', function(ev) {
+  hammertime.on('swipeleft', function(ev) {
       //console.log(ev);
       //0 = false, 1 = true
       element = $('#flow-element');
