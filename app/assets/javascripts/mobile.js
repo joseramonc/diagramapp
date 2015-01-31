@@ -62,6 +62,7 @@ $(document).ready(function($) {
           shapeClass = 'rombo';
         else
           shapeClass = 'rectangle';
+        console.log(shapeClass);
         console.log(data);
         text = $(element.find('h4')[0]);
         text.html(data.text);
