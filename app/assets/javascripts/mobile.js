@@ -6,7 +6,7 @@ $(document).ready(function($) {
   instrucciones =  'Diagrama N, Presiona una vez, para escuchar contenido,' ;
   instrucciones += 'Presiona rápidamente dos veces, para escuchar las notas,';
   instrucciones += 'Desliza de, derecha a izquierda, para ir al siguiente elemento';
-  meSpeak.speak(instrucciones);
+  meSpeak.speak(instrucciones, { "speed": "130", "amplitude": "120", "wordgap": "2", "variant": "m5"});
 
   var myElement = document.getElementById('flow-element');
   var hammertime = new Hammer(myElement);
