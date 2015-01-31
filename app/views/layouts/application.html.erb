@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield(:scripts) %>
+  <script type="text/javascript" src="https://rawgit.com/adrai/flowchart.js/master/release/flowchart.amd-1.3.4.js"></script>
   <script type="text/javascript" src="http://localhost:3000/mespeak/mespeak.js"></script>
   <%= csrf_meta_tags %>
 </head>
