@@ -1,3 +1,15 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.rombo {
+  h4#node-content {
+    position: relative;
+    bottom: -66px;
+    left: -20px;
+  }
+}
+.oval {
+  h4#node-content {
+    padding-top: 20%;
+  }
+}
