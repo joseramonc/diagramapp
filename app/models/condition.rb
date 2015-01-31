@@ -1,6 +1,6 @@
 class Condition < Node
-  validates_presence_of :true_child_id
-  validates_presence_of :false_child_id
+  validates_presence_of :true_child_id, if: :'persisted?'
+  validates_presence_of :false_child_id, if: :'persisted?'
 
   def true_child
     Node.find(true_child_id)

@@ -21,7 +21,8 @@ class NodesController < AdminController
       response = @node.false_child
     end
     response = @node.children
-    render json: response.to_json
+
+    render json: JSON.parse(response.to_json).merge(type: @node.type)
   end
 
   # GET /nodes/:id/next?condition
