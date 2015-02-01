@@ -12,6 +12,9 @@
     <% @diagrams.each do |diagram| %>
       <tr>
         <td><%= diagram.name %></td>
+        <td><%= content_tag(:label, "#{diagram.last_nodes.count} nodos finales", class: "label label-#{diagram.last_nodes.count > 0 ? 'success' : 'warning'}") %></td>
+        <td><%= content_tag(:label, 'Falta nodo inial', class: 'label label-warning') if diagram.initial_node.nil? %></td>
+        <td><%= content_tag(:label, "#{diagram.nodes.count} nodos", class: 'label label-success') %></td>
         <td><%= link_to 'Show', diagram %></td>
         <td><%= link_to 'Edit', edit_diagram_path(diagram) %></td>
         <td><%= link_to 'Destroy', diagram, method: :delete, data: { confirm: 'Are you sure?' } %></td>

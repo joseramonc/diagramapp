@@ -56,9 +56,8 @@
       <div class="field">
         <%= f.label :position %><br>
         <% options = [] %>
-        <% options << ['Inicial', :initial] if @node.diagram.first_node.nil? %>
         <% options << ['Normal', :middle] %>
-        <% options << ['Final', :final] if @node.diagram.last_node.nil? %>
+        <% options << ['Final', :final] %>
         <%= f.select :position, options %>
       </div>
       <div class="field">
