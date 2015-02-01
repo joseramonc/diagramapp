@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require hammer
+//= require keys
 //= require_tree .

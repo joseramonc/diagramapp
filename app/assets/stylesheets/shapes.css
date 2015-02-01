@@ -1,13 +1,13 @@
 .rectangle {
   width: 200px;
   height: 100px;
-  background: yellow;
+  background: #EBEFC9;
 }
 
 .oval {
   width: 200px;
   height: 100px;
-  background: yellow;
+  background: #EBEFC9;
   -moz-border-radius: 100px / 50px;
   -webkit-border-radius: 100px / 50px;
   border-radius: 100px / 50px;
@@ -18,7 +18,7 @@
   width: 0;
   height: 0;
   border: 100px solid transparent;
-  border-bottom-color: red;
+  border-bottom-color: #EBEFC9;
   position: relative;
   top: -100px;
 }
@@ -30,5 +30,5 @@
   width: 0;
   height: 0;
   border: 100px solid transparent;
-  border-top-color: red;
+  border-top-color: #EBEFC9;
 }

@@ -17,7 +17,7 @@
 <ul>
   <% @diagrams.each do |diagram| %>
     <li>
-      <%= link_to diagram.name, app_diagram_path(diagram), class: "btn btn-primary" %>
+      <%= link_to diagram.name, app_diagram_path(diagram), class: "btn btn-primary", data: {no_turbolink: true} %>
       <%= diagram.name %>
     </li>
   <% end %>
