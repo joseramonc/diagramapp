@@ -42,6 +42,6 @@ class DiagramsController < AdminController
     end
 
     def diagram_params
-      params.require(:diagram).permit(:name)
+      params.require(:diagram).permit(:name, :initial_node_id)
     end
 end

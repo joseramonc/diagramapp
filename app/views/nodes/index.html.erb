@@ -17,7 +17,7 @@
       <tr>
         <td><%= node.text %></td>
         <td><%= node.position %></td>
-        <td><%= node.diagram_id %></td>
+        <td><%= node.diagram.name if node.diagram %></td>
         <td><%= node.help_text %></td>
         <td><%= node.parent_id %></td>
         <td><%= link_to 'Show', node_path(node) %></td>
