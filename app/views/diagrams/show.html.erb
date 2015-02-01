@@ -5,16 +5,16 @@
   <%= @diagram.name %>
 </p>
 
-
+<%= link_to 'Ver diagrama', app_diagram_path(@diagram), class: "btn btn-info", data: {no_turbolink: true} %>
+<br>
+Nodos:
 <ul>
-  <% node = @diagram.first_node %>
-  <% right_childs = [] %>
-  <% while !node.nil? do %>
-    <%= node.render %>
-    <% node = node.children %>
+  <% @diagram.nodes.each do |n| %>
+    <li>
+      <%= n.text %>
+    </li>
   <% end %>
 </ul>
-
 
 <%= link_to 'Edit', edit_diagram_path(@diagram) %> |
 <%= link_to 'Back', diagrams_path %>

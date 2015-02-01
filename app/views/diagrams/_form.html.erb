@@ -17,7 +17,9 @@
   </div>
   <div class="field">
     <%= f.label :initial_node_id %><br>
-    <%= f.number_field :initial_node_id %>
+    <% if !@diagram.id.nil? %>
+      <%= f.select :initial_node_id, options_from_collection_for_select(@diagram.nodes, :id, :text, @diagram.initial_node_id) %>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
