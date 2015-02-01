@@ -2,6 +2,12 @@ $(document).ready(function($) {
 
   setTimeout(function() {
     $('#st').attr('fill', 'yellow');
+    $(".diagram-data").each(function() {
+      var $node = $(this);
+      $("#" + $(this).attr("data-id")).hover(function(){
+        $("#hover").html($node.attr("data-help-text"));
+      });
+    });
   }, 1000);
 
   
@@ -16,3 +22,4 @@ $(document).on('keydown', function(e) {
     $("#"+nums).attr('fill', 'yellow');
   }
 });
+

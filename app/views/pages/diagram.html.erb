@@ -4,16 +4,17 @@
 <div class="hidden" id="d-flow" data-flow="<%= @diagram.to_flow_chart %>"></div>
 
 <% @diagram.nodes.each do |node| %>
-  <div id="node-<%= node.id %>" class="hidden"
+  <div id="node-<%= node.id %>" class="diagram-data hidden"
+    data-id="<%= node.id %>"
     <% if node.condition? %>
       data-next-id="<%= node.true_child_id %>"
     <% else %>
-      data-next-id="<%= node.children.id if !node.final? %>"
+      data-next-id="<%= node.children.id if node.children %>"
     <% end %>
-  >
+  data-help-text="<%= node.help_text %>">
   </div>
 <% end %>
-
+<h4 id="hover"></h4>
 <div id="diagram"></div>
 <%= content_for :scripts do %>
   <script type="text/javascript" src="https://rawgit.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
