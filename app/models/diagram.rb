@@ -31,7 +31,7 @@ class Diagram < ActiveRecord::Base
   def each_node_flow_chart
     a = ''
     nodes.each do |node|
-      a = a + "#{node.to_flow_chart}<br>"
+      a = a + "#{node.to_flow_chart}\n"
     end
     return a
   end
@@ -51,17 +51,17 @@ class Diagram < ActiveRecord::Base
     node_text = ''
     # byebug
     conditions.each do |node|
-      node_text = node_text + "#{node.id}(yes)->#{node.true_flow.join('->')}<br>" +
-                  "#{node.id}(no)->#{node.false_flow.join('->')}<br>"
+      node_text = node_text + "#{node.id}(yes)->#{node.true_flow.join('->')}\n" +
+                  "#{node.id}(no)->#{node.false_flow.join('->')}\n"
     end
     return node_text
   end
 
   def to_flow_chart
-    "st=>start: Start:>http://localhost:3000/<br>".html_safe +
-    "e=>end:>http://www.google.com<br>".html_safe +
+    "st=>start: Start:>http://localhost:3000/\n".html_safe +
+    "e=>end:>http://www.google.com\n".html_safe +
     each_node_flow_chart.html_safe +
-    "st->#{children_flow.join('->')}->e<br>".html_safe +
+    "st->#{children_flow.join('->')}->e\n".html_safe +
     each_condition_flow_chart.html_safe
   end
 end

@@ -1,6 +1,18 @@
 <h1><%= @diagram.name %></h1>
 
-<%= @diagram.to_flow_chart %>
+<div class="hidden" id="d-flow" data-flow="<%= @diagram.to_flow_chart %>"></div>
+
+<% @diagram.nodes.each do |node| %>
+  <div id="node-<%= node.id %>" class="hidden"
+    <% if node.condition? %>
+      data-next-id="<%= node.true_child_id %>"
+    <% else %>
+      data-next-id="<%= node.children.id if !node.final? %>"
+    <% end %>
+  >
+  </div>
+<% end %>
+
 <div id="diagram"></div>
 <%= content_for :scripts do %>
   <script type="text/javascript" src="https://rawgit.com/DmitryBaranovskiy/raphael/master/raphael-min.js"></script>
@@ -9,23 +21,8 @@
 <%= content_for :flow do %>
   <script>
     $(document).ready(function($){
-      var diagram = flowchart.parse(
-                "st=>start: Start:>http://localhost:3000/\n" +
-                "e=>end:>http://www.google.com\n" +
-                "2=>operation: puts 'node 2'\n" +
-                "3=>condition: if node4?\n" +
-                "4=>operation: 123\n" +
-                "1=>operation: a++\n" +
-                "8=>operation: puts true.to_s action\n" +
-                "5=>operation: puts 'node 5'\n" +
-                "7=>operation: puts 'node 6'\n" +
-                "14=>condition: hola\n" +
-                "st->2->1->3->e\n" +
-                "3(yes)->4->5->8->e\n" +
-                "3(no)->7->14\n" +
-                "14(yes)->\n" +
-                "14(no)->'"
-      );
+      console.log($('#d-flow').attr('data-flow'));
+      var diagram = flowchart.parse($('#d-flow').attr('data-flow'));
       diagram.drawSVG('diagram');
     });
   </script>
